@@ -5,7 +5,7 @@ const thoughtController = {
     //Get all thoughts
   getAllThought(req, res) {
     Thought.find({})
-      .populate({ path: "reactions", select: "-__v" })
+      .populate({ path: "reactions", select: "-__v" }) 
       .select("-__v")
       .sort({ _id: -1 })
       .then((dbThoughtData) => res.json(dbThoughtData))
@@ -14,7 +14,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-//Get thought by ID
+    //Get thought by ID
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
       .populate({ path: "reactions", select: "-__v" })
@@ -32,7 +32,7 @@ const thoughtController = {
       });
   },
 
-  //Create thought
+    //Create thought
   createThought({ params, body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
